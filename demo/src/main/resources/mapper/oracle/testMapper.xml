@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.oracle.testMapper">
+<resultMap id="cctvMap" type="com.neighbor.practice.common.CamelCaseMap"></resultMap>
+
+<select id = "selectVmsList" resultType="com.neighbor.practice.domain.VmsDto">
+	SELECT VMS_ID
+	     , VMS_DESC
+	     , ROUTE_NO
+	  FROM VMSCONFIG
+</select>
+
+
+   <update id="mergeBusLocation" parameterType="com.neighbor.practice.dao.BusLocationVo">
+      MERGE INTO
+         TAGO_CNTC_BUSLOCINFO
+      USING DUAL
+      ON (VEHICLE_ID = #{vehId})
+      WHEN MATCHED THEN
+         UPDATE SET         
+         
+             ROUTE_ID = #{routeId}
+         
+      WHEN NOT MATCHED THEN
+         INSERT
+         (
+         	VEHICLE_ID
+         	<if test="routeId != ''">
+            	, ROUTE_ID
+            </if>
+         )
+         VALUES
+         (
+         	'123'
+         	<if test="routeId != ''">
+            , '8888'
+            </if>
+         )
+   </update>
+   
+   
+</mapper>
