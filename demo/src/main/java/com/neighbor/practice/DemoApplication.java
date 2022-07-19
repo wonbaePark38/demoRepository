@@ -3,8 +3,6 @@ package com.neighbor.practice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.neighbor.practice.controller.ProcessController;
-
 @SpringBootApplication
 public class DemoApplication {
 
